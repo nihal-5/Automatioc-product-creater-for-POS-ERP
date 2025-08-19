@@ -1,0 +1,21 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# OS
+.DS_Store
+
+# Project outputs
+output/
+*.pt
+*.onnx
+
+# IDE
+.vscode/
+.idea/

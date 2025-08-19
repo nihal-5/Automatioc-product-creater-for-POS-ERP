@@ -1,0 +1,9 @@
+# Python 3.11+ is required (uses datetime.UTC)
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.1.0
+easyocr>=1.7.1
+opencv-python>=4.8.0
+pyzbar>=0.1.9
+Pillow>=10.0.0
+numpy>=1.24.0
