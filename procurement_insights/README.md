@@ -44,7 +44,7 @@ procurement_insights/
     diagram.txt  # brief pipeline outline
   samples/
     sample_response.json
-    sample_invoice.pdf (add your own or generate)
+    sample_invoice.pdf
   requirements.txt
   README.md
 ```
