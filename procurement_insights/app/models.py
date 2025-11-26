@@ -29,3 +29,22 @@ class InvoiceParse(BaseModel):
     line_items: List[LineItem] = []
     totals: Totals = Totals()
     anomalies: List[str] = []
+
+
+class DocumentClassification(BaseModel):
+    doc_type: str
+    confidence: float
+    notes: List[str] = []
+
+
+class ValidationIssue(BaseModel):
+    code: str
+    message: str
+    severity: str = "warning"
+
+
+class AnalysisResult(BaseModel):
+    file_name: str
+    classification: DocumentClassification
+    invoice: InvoiceParse
+    issues: List[ValidationIssue] = []

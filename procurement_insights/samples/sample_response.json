@@ -1,0 +1,27 @@
+{
+  "file_name": "invoice_sample.pdf",
+  "classification": {
+    "doc_type": "invoice",
+    "confidence": 0.8,
+    "notes": [
+      "Found keyword 'invoice' or 'bill'.",
+      "Found tax terminology."
+    ]
+  },
+  "invoice": {
+    "file_name": "invoice_sample.pdf",
+    "text_preview": "INVOICE\nNo: INV-2024-010\nDate: 12/10/2024\nSupplier GST: 29ABCDE1234F2Z5\n---\nItem A 2 50.00 100.00\nItem B 1 25.00 25.00\nSubtotal: 125.00\nTax: 22.50\nTotal: 147.50",
+    "invoice_number": "INV-2024-010",
+    "invoice_date": "12/10/2024",
+    "supplier_tax_id": "29ABCDE1234F2Z5",
+    "customer_tax_id": null,
+    "barcodes": [],
+    "line_items": [
+      { "description": "Item A", "quantity": 2.0, "unit_price": 50.0, "line_total": 100.0 },
+      { "description": "Item B", "quantity": 1.0, "unit_price": 25.0, "line_total": 25.0 }
+    ],
+    "totals": { "subtotal": 125.0, "tax": 22.5, "total": 147.5, "currency": "INR" },
+    "anomalies": []
+  },
+  "issues": []
+}

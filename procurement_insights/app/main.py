@@ -4,7 +4,7 @@ import os
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from .parser import process_pdf_bytes
+from .pipeline import analyze_document
 
 app = FastAPI(title="Procurement Insights", version="0.1.0")
 
@@ -82,8 +82,8 @@ async def process(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
     content = await file.read()
     try:
-        parsed = process_pdf_bytes(content, file.filename)
-        return JSONResponse(parsed)
+        analysis = analyze_document(content, file.filename)
+        return JSONResponse(analysis.model_dump())
     except Exception as exc:  # pragma: no cover - surface as 500
         raise HTTPException(status_code=500, detail=f"Failed to process PDF: {exc}")
 

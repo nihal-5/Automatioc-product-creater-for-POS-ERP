@@ -20,6 +20,11 @@ def _extract_text(content: bytes) -> str:
         return extract_text(f) or ""
 
 
+def extract_text_from_pdf(content: bytes) -> str:
+    """Public helper to extract text from PDF bytes."""
+    return _extract_text(content)
+
+
 def _parse_currency(text: str) -> str | None:
     m = CURRENCY_RE.search(text)
     if not m:
@@ -119,21 +124,21 @@ def _calc_anomalies(line_items: List[LineItem], totals: Totals, tax_id: str | No
     if totals.total is not None and totals.total <= 0:
         anomalies.append("Total is zero or negative.")
     line_sum = sum(li.line_total or 0 for li in line_items)
-    if totals.total and line_sum:
-        diff = abs(totals.total - line_sum)
-        if diff > max(1.0, line_sum * 0.02):
-            anomalies.append(f"Total mismatch vs line sum (diff={diff:.2f}).")
-    if totals.tax and totals.subtotal:
-        rate = totals.tax / totals.subtotal if totals.subtotal else 0
-        if rate < 0 or rate > 0.4:
-            anomalies.append(f"Suspicious tax rate ({rate:.2%}).")
-    if not line_items:
-        anomalies.append("No line items detected.")
-    return anomalies
+        if totals.total and line_sum:
+            diff = abs(totals.total - line_sum)
+            if diff > max(1.0, line_sum * 0.02):
+                anomalies.append(f"Total mismatch vs line sum (diff={diff:.2f}).")
+        if totals.tax and totals.subtotal:
+            rate = totals.tax / totals.subtotal if totals.subtotal else 0
+            if rate < 0 or rate > 0.4:
+                anomalies.append(f"Suspicious tax rate ({rate:.2%}).")
+        if not line_items:
+            anomalies.append("No line items detected.")
+        return anomalies
 
 
-def process_pdf_bytes(content: bytes, file_name: str) -> dict:
-    text = _extract_text(content)
+def parse_invoice_text(text: str, file_name: str) -> InvoiceParse:
+    """Parse already-extracted text into structured invoice data."""
     invoice_id = _parse_invoice_id(text)
     invoice_date = _parse_date(text)
     tax_id = _parse_tax_id(text)
@@ -155,4 +160,11 @@ def process_pdf_bytes(content: bytes, file_name: str) -> dict:
         totals=totals,
         anomalies=anomalies,
     )
+    return parsed
+
+
+def process_pdf_bytes(content: bytes, file_name: str) -> dict:
+    """Legacy helper: extract text then parse."""
+    text = extract_text_from_pdf(content)
+    parsed = parse_invoice_text(text, file_name)
     return parsed.model_dump()
