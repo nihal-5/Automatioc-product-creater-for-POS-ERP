@@ -68,6 +68,14 @@ For each product folder you’ll also get a combined JSON plus `output/catalog.j
 6. (Optional) Send JSONs to OpenAI for structured output.  
 7. Write per‑image JSONs, combined product JSON, and catalog HTML.
 
+## Showcase
+- Product catalog UI (catalog HTML with hero/JSON preview):  
+  `docs/product-catalog.png`  
+  _(Add your exported screenshot to this path to display it here.)_
+- AI email/resume automation dashboard (My-Email-MCP):  
+  `docs/resume-approval-dashboard.png`  
+  _(Add your screenshot here or in the My-Email-MCP README.)_
+
 ## Notes
 - If no product‑like box is found, hero images may be skipped (noted in JSON).  
 - If OpenCV is missing, the cutout hero is skipped (noted in JSON).  
