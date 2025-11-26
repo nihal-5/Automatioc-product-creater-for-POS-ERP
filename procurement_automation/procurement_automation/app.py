@@ -281,7 +281,7 @@ HTML_PAGE = """
       padding: 18px;
       box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
     }
-    .two-col { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; align-items: start; margin-top: 18px; }
+    .two-col { display: grid; grid-template-columns: 1.05fr 1.1fr; gap: 16px; align-items: start; margin-top: 18px; }
     @media (max-width: 1280px) { .two-col { grid-template-columns: 1fr; } }
     .wide-panel { margin-top: 16px; }
     .plan-actions { display:flex; gap:10px; align-items:center; justify-content: space-between; flex-wrap:wrap; }
@@ -356,41 +356,6 @@ HTML_PAGE = """
     </div>
 
     <div class="two-col">
-      <form id="form" enctype="multipart/form-data" class="panel">
-        <div class="actions">
-          <span class="badge">Uploads optional — defaults provided</span>
-          <button id="run-btn" type="button" onclick="regeneratePO()">Generate PO</button>
-          <span class="hint">We never send data outside this service.</span>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <strong>Suppliers</strong>
-            <span class="hint">JSON: supplier_id, lead_time_days, min_order_qty, price_band</span>
-            <input type="file" name="suppliers">
-          </div>
-          <div class="card">
-            <strong>SKUs</strong>
-            <span class="hint">JSON: sku, supplier_id, case_size</span>
-            <input type="file" name="skus">
-          </div>
-          <div class="card">
-            <strong>Locations</strong>
-            <span class="hint">JSON: location_id, kind, capacity, safety_stock</span>
-            <input type="file" name="locations">
-          </div>
-          <div class="card">
-            <strong>Inventory</strong>
-            <span class="hint">JSON or CSV: sku, location_id, on_hand, inbound</span>
-            <input type="file" name="inventory">
-          </div>
-          <div class="card">
-            <strong>Sales</strong>
-            <span class="hint">JSON or CSV: sku, location_id, qty, days</span>
-            <input type="file" name="sales">
-          </div>
-        </div>
-      </form>
-
       <div class="panel">
         <div class="actions">
           <strong>Supplier view</strong>
@@ -402,6 +367,51 @@ HTML_PAGE = """
           <span class="hint">Auto-refreshes from the latest data/plan and shows branch stock per SKU.</span>
         </div>
         <div id="supplier-info" class="supplier-card">Select a supplier to view linked products, branch stock, and PO lines.</div>
+      </div>
+
+      <div>
+        <form id="form" enctype="multipart/form-data" class="panel">
+          <div class="actions">
+            <span class="badge">Uploads optional — defaults provided</span>
+            <button id="run-btn" type="button" onclick="regeneratePO()">Generate PO</button>
+            <span class="hint">We never send data outside this service.</span>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <strong>Suppliers</strong>
+              <span class="hint">JSON: supplier_id, lead_time_days, min_order_qty, price_band</span>
+              <input type="file" name="suppliers">
+            </div>
+            <div class="card">
+              <strong>SKUs</strong>
+              <span class="hint">JSON: sku, supplier_id, case_size</span>
+              <input type="file" name="skus">
+            </div>
+            <div class="card">
+              <strong>Locations</strong>
+              <span class="hint">JSON: location_id, kind, capacity, safety_stock</span>
+              <input type="file" name="locations">
+            </div>
+            <div class="card">
+              <strong>Inventory</strong>
+              <span class="hint">JSON or CSV: sku, location_id, on_hand, inbound</span>
+              <input type="file" name="inventory">
+            </div>
+            <div class="card">
+              <strong>Sales</strong>
+              <span class="hint">JSON or CSV: sku, location_id, qty, days</span>
+              <input type="file" name="sales">
+            </div>
+          </div>
+        </form>
+
+        <div class="panel" style="margin-top:12px;">
+          <div class="actions">
+            <strong>Linked SKUs & branch stock</strong>
+            <span class="hint">Per-location on hand, inbound, planned.</span>
+          </div>
+          <div id="linked-skus" class="supplier-card">Select a supplier to view linked SKUs and stock.</div>
+        </div>
       </div>
     </div>
 
@@ -458,23 +468,6 @@ HTML_PAGE = """
         ? allocations.map(a => `<div class="loc-chip">${a.location_id} (${a.kind}) → ${a.total_allocated} units</div>`).join('')
         : '<span class="hint">No allocations planned for this supplier.</span>';
 
-      const skuCards = skus.map((sku) => {
-        const totalOnHand = sku.locations.reduce((acc, l) => acc + (l.on_hand || 0), 0);
-        const totalInbound = sku.locations.reduce((acc, l) => acc + (l.inbound || 0), 0);
-        const locs = sku.locations.map(l => {
-          const badge = l.low ? '<span class="warn">• low</span>' : '';
-          const planned = l.planned_in && l.planned_in > 0 ? ` | planned in ${l.planned_in}` : '';
-          const cap = l.capacity ? ` | cap ${l.capacity}` : '';
-          return `<div class="loc-chip">${l.location_id} (${l.kind}) — on hand ${l.on_hand}, inbound ${l.inbound}${planned}${cap} ${badge}</div>`;
-        }).join('');
-        return `
-          <div class="sku-card">
-            <div><strong>${sku.sku}</strong> <span class="tag">case ${sku.case_size}</span> <span class="tag">on hand ${totalOnHand} | inbound ${totalInbound}</span> <span class="tag">planned ${sku.planned_total}</span></div>
-            <div class="sku-locs">${locs}</div>
-          </div>
-        `;
-      }).join('');
-
       panel.innerHTML = `
         <div class="tag">Supplier</div>
         <div><strong>${supplier.name}</strong> (${supplier.supplier_id})</div>
@@ -505,8 +498,29 @@ HTML_PAGE = """
           }
         </div>
         <div style="margin-top:10px;"><strong>Linked SKUs & branch stock</strong></div>
-        ${skuCards}
+        <div id="sku-slot"></div>
       `;
+
+      const linked = document.getElementById('linked-skus');
+      if (linked) {
+        const skuCards = skus.map((sku) => {
+          const totalOnHand = sku.locations.reduce((acc, l) => acc + (l.on_hand || 0), 0);
+          const totalInbound = sku.locations.reduce((acc, l) => acc + (l.inbound || 0), 0);
+          const locs = sku.locations.map(l => {
+            const badge = l.low ? '<span class="warn">• low</span>' : '';
+            const planned = l.planned_in && l.planned_in > 0 ? ` | planned in ${l.planned_in}` : '';
+            const cap = l.capacity ? ` | cap ${l.capacity}` : '';
+            return `<div class="loc-chip">${l.location_id} (${l.kind}) — on hand ${l.on_hand}, inbound ${l.inbound}${planned}${cap} ${badge}</div>`;
+          }).join('');
+          return `
+            <div class="sku-card">
+              <div><strong>${sku.sku}</strong> <span class="tag">case ${sku.case_size}</span> <span class="tag">on hand ${totalOnHand} | inbound ${totalInbound}</span> <span class="tag">planned ${sku.planned_total}</span></div>
+              <div class="sku-locs">${locs}</div>
+            </div>
+          `;
+        }).join('');
+        linked.innerHTML = skuCards || '<span class="hint">No SKUs for this supplier.</span>';
+      }
     }
 
     async function loadSuppliers(preferId = null) {
