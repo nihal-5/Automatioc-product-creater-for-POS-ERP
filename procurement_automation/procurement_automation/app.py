@@ -351,16 +351,6 @@ HTML_PAGE = """
       <p class="subhead">Upload JSON/CSV files or run with the bundled multi-supplier sample set to generate a deterministic procurement plan with supplier-level POs, branch allocations, and ready-to-send PDFs.</p>
     </div>
 
-    <div class="panel" style="margin-top:14px;">
-      <div class="actions">
-        <strong>Workflow</strong>
-        <span class="hint">Transparent log of data load, planning, and supplier selection.</span>
-      </div>
-      <ul id="status-list" class="status-list">
-        <li class="status-item info">Bootstrapping sample data…</li>
-      </ul>
-    </div>
-
     <form id="form" enctype="multipart/form-data" class="panel">
       <div class="actions">
         <span class="badge">Uploads optional — defaults provided</span>
@@ -418,6 +408,7 @@ HTML_PAGE = """
   <script>
     function pushStatus(text, state = 'info') {
       const list = document.getElementById('status-list');
+      if (!list) return;
       const li = document.createElement('li');
       li.className = `status-item ${state}`;
       li.textContent = text;
