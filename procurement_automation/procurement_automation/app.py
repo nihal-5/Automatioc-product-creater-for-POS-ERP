@@ -354,7 +354,7 @@ HTML_PAGE = """
     <form id="form" enctype="multipart/form-data" class="panel">
       <div class="actions">
         <span class="badge">Uploads optional — defaults provided</span>
-        <button id="run-btn" type="button" onclick="runPlan()">Generate plan</button>
+        <button id="run-btn" type="button" onclick="regeneratePO()">Generate PO</button>
         <span class="hint">We never send data outside this service.</span>
       </div>
       <div class="grid">
@@ -546,9 +546,11 @@ HTML_PAGE = """
       const note = document.getElementById('note');
       const result = document.getElementById('result');
       const btn = document.getElementById('run-btn');
+      const regen = document.getElementById('regen-btn');
       note.textContent = 'Processing...';
       pushStatus('Planning purchase orders…', 'pending');
       btn.disabled = true;
+      if (regen) regen.disabled = true;
       try {
         const res = await fetch('/api/run', { method: 'POST', body: data });
         if (!res.ok) throw new Error('Request failed');
@@ -567,6 +569,7 @@ HTML_PAGE = """
         pushStatus('Plan failed', 'pending');
       } finally {
         btn.disabled = false;
+        if (regen) regen.disabled = false;
       }
     }
 
