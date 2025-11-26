@@ -124,17 +124,17 @@ def _calc_anomalies(line_items: List[LineItem], totals: Totals, tax_id: str | No
     if totals.total is not None and totals.total <= 0:
         anomalies.append("Total is zero or negative.")
     line_sum = sum(li.line_total or 0 for li in line_items)
-        if totals.total and line_sum:
-            diff = abs(totals.total - line_sum)
-            if diff > max(1.0, line_sum * 0.02):
-                anomalies.append(f"Total mismatch vs line sum (diff={diff:.2f}).")
-        if totals.tax and totals.subtotal:
-            rate = totals.tax / totals.subtotal if totals.subtotal else 0
-            if rate < 0 or rate > 0.4:
-                anomalies.append(f"Suspicious tax rate ({rate:.2%}).")
-        if not line_items:
-            anomalies.append("No line items detected.")
-        return anomalies
+    if totals.total and line_sum:
+        diff = abs(totals.total - line_sum)
+        if diff > max(1.0, line_sum * 0.02):
+            anomalies.append(f"Total mismatch vs line sum (diff={diff:.2f}).")
+    if totals.tax and totals.subtotal:
+        rate = totals.tax / totals.subtotal if totals.subtotal else 0
+        if rate < 0 or rate > 0.4:
+            anomalies.append(f"Suspicious tax rate ({rate:.2%}).")
+    if not line_items:
+        anomalies.append("No line items detected.")
+    return anomalies
 
 
 def parse_invoice_text(text: str, file_name: str) -> InvoiceParse:
