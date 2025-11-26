@@ -3,20 +3,69 @@
     "supplier_id": "SUP-RED",
     "name": "Red Label Supplier",
     "lead_time_days": 5,
-    "min_order_qty": 50,
+    "min_order_qty": 80,
     "price_band": {
       "SKU-RED-TEA": 1.1,
-      "SKU-MASALA": 1.5
+      "SKU-MASALA": 1.5,
+      "SKU-BLACK-TEA": 1.2
     }
   },
   {
     "supplier_id": "SUP-GROC",
     "name": "Grocer Partner",
     "lead_time_days": 7,
-    "min_order_qty": 100,
+    "min_order_qty": 150,
     "price_band": {
       "SKU-RICE": 0.9,
-      "SKU-PULSES": 1.2
+      "SKU-PULSES": 1.2,
+      "SKU-FLOUR": 0.8,
+      "SKU-GHEE": 3.5
+    }
+  },
+  {
+    "supplier_id": "SUP-FRESH",
+    "name": "Fresh Farms",
+    "lead_time_days": 4,
+    "min_order_qty": 70,
+    "price_band": {
+      "SKU-OLIVE-OIL": 4.8,
+      "SKU-HONEY": 2.9,
+      "SKU-DRIED-FRUIT": 3.4
+    }
+  },
+  {
+    "supplier_id": "SUP-BEV",
+    "name": "Beverage Co",
+    "lead_time_days": 6,
+    "min_order_qty": 100,
+    "price_band": {
+      "SKU-ORANGE-JUICE": 2.1,
+      "SKU-SPARKLING": 1.9,
+      "SKU-COLD-BREW": 2.8
+    }
+  },
+  {
+    "supplier_id": "SUP-SNACK",
+    "name": "Snack Junction",
+    "lead_time_days": 5,
+    "min_order_qty": 90,
+    "price_band": {
+      "SKU-TRAIL-MIX": 3.1,
+      "SKU-CHIPS": 1.2,
+      "SKU-COOKIES": 2.0,
+      "SKU-GRANOLA": 2.4
+    }
+  },
+  {
+    "supplier_id": "SUP-HOUSE",
+    "name": "Home Essentials",
+    "lead_time_days": 6,
+    "min_order_qty": 110,
+    "price_band": {
+      "SKU-DETERGENT": 5.0,
+      "SKU-DISH-SOAP": 2.2,
+      "SKU-PAPER-TOWEL": 4.5,
+      "SKU-SOAP": 1.1
     }
   }
 ]

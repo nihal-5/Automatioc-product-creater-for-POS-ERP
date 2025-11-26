@@ -1,8 +1,674 @@
 [
-  { "sku": "SKU-RED-TEA", "location_id": "STORE-NY", "qty": 120, "days": 14 },
-  { "sku": "SKU-RED-TEA", "location_id": "STORE-SF", "qty": 80, "days": 14 },
-  { "sku": "SKU-RED-TEA", "location_id": "ONLINE", "qty": 150, "days": 14 },
-  { "sku": "SKU-MASALA", "location_id": "STORE-NY", "qty": 60, "days": 14 },
-  { "sku": "SKU-RICE", "location_id": "DC-EAST", "qty": 400, "days": 14 },
-  { "sku": "SKU-PULSES", "location_id": "DC-EAST", "qty": 210, "days": 14 }
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "STORE-NY",
+    "qty": 190,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "STORE-SF",
+    "qty": 150,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "STORE-CHI",
+    "qty": 140,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "STORE-DAL",
+    "qty": 135,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "ONLINE",
+    "qty": 240,
+    "days": 14
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "STORE-NY",
+    "qty": 120,
+    "days": 14
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "STORE-SF",
+    "qty": 95,
+    "days": 14
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "STORE-CHI",
+    "qty": 92,
+    "days": 14
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "STORE-DAL",
+    "qty": 88,
+    "days": 14
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "ONLINE",
+    "qty": 170,
+    "days": 14
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "STORE-NY",
+    "qty": 100,
+    "days": 14
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "STORE-SF",
+    "qty": 88,
+    "days": 14
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "STORE-CHI",
+    "qty": 82,
+    "days": 14
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "STORE-DAL",
+    "qty": 78,
+    "days": 14
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "ONLINE",
+    "qty": 180,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "DC-EAST",
+    "qty": 560,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "DC-WEST",
+    "qty": 480,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "STORE-NY",
+    "qty": 150,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "STORE-SF",
+    "qty": 130,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "STORE-DAL",
+    "qty": 140,
+    "days": 14
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "ONLINE",
+    "qty": 200,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "DC-EAST",
+    "qty": 330,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "DC-WEST",
+    "qty": 260,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "STORE-NY",
+    "qty": 110,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "STORE-SF",
+    "qty": 100,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "STORE-DAL",
+    "qty": 104,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "ONLINE",
+    "qty": 170,
+    "days": 14
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "DC-EAST",
+    "qty": 350,
+    "days": 14
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "DC-WEST",
+    "qty": 290,
+    "days": 14
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "STORE-NY",
+    "qty": 120,
+    "days": 14
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "STORE-SF",
+    "qty": 108,
+    "days": 14
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "STORE-CHI",
+    "qty": 112,
+    "days": 14
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "ONLINE",
+    "qty": 180,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "DC-EAST",
+    "qty": 170,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "DC-WEST",
+    "qty": 150,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "STORE-NY",
+    "qty": 70,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "STORE-SF",
+    "qty": 62,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "STORE-DAL",
+    "qty": 66,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "ONLINE",
+    "qty": 140,
+    "days": 14
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "DC-EAST",
+    "qty": 160,
+    "days": 14
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "DC-WEST",
+    "qty": 130,
+    "days": 14
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "STORE-NY",
+    "qty": 80,
+    "days": 14
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "STORE-SF",
+    "qty": 70,
+    "days": 14
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "STORE-CHI",
+    "qty": 68,
+    "days": 14
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "ONLINE",
+    "qty": 150,
+    "days": 14
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "DC-EAST",
+    "qty": 150,
+    "days": 14
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "DC-WEST",
+    "qty": 120,
+    "days": 14
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "STORE-NY",
+    "qty": 76,
+    "days": 14
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "STORE-SF",
+    "qty": 68,
+    "days": 14
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "STORE-DAL",
+    "qty": 66,
+    "days": 14
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "ONLINE",
+    "qty": 140,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "DC-EAST",
+    "qty": 160,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "DC-WEST",
+    "qty": 140,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "STORE-NY",
+    "qty": 84,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "STORE-SF",
+    "qty": 76,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "STORE-CHI",
+    "qty": 72,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "ONLINE",
+    "qty": 150,
+    "days": 14
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "STORE-NY",
+    "qty": 170,
+    "days": 14
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "STORE-SF",
+    "qty": 150,
+    "days": 14
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "STORE-CHI",
+    "qty": 140,
+    "days": 14
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "STORE-DAL",
+    "qty": 136,
+    "days": 14
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "ONLINE",
+    "qty": 220,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "STORE-NY",
+    "qty": 200,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "STORE-SF",
+    "qty": 180,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "STORE-CHI",
+    "qty": 168,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "STORE-DAL",
+    "qty": 160,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "ONLINE",
+    "qty": 250,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "STORE-NY",
+    "qty": 130,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "STORE-SF",
+    "qty": 118,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "STORE-CHI",
+    "qty": 110,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "STORE-DAL",
+    "qty": 108,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "ONLINE",
+    "qty": 190,
+    "days": 14
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "STORE-NY",
+    "qty": 120,
+    "days": 14
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "STORE-SF",
+    "qty": 108,
+    "days": 14
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "STORE-CHI",
+    "qty": 100,
+    "days": 14
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "STORE-DAL",
+    "qty": 98,
+    "days": 14
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "ONLINE",
+    "qty": 180,
+    "days": 14
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "STORE-NY",
+    "qty": 190,
+    "days": 14
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "STORE-SF",
+    "qty": 178,
+    "days": 14
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "STORE-CHI",
+    "qty": 170,
+    "days": 14
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "STORE-DAL",
+    "qty": 165,
+    "days": 14
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "ONLINE",
+    "qty": 250,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "STORE-NY",
+    "qty": 160,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "STORE-SF",
+    "qty": 148,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "STORE-CHI",
+    "qty": 140,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "STORE-DAL",
+    "qty": 136,
+    "days": 14
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "ONLINE",
+    "qty": 220,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "STORE-NY",
+    "qty": 140,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "STORE-SF",
+    "qty": 130,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "STORE-CHI",
+    "qty": 124,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "STORE-DAL",
+    "qty": 120,
+    "days": 14
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "ONLINE",
+    "qty": 200,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "STORE-NY",
+    "qty": 100,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "STORE-SF",
+    "qty": 92,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "STORE-CHI",
+    "qty": 88,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "STORE-DAL",
+    "qty": 84,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "ONLINE",
+    "qty": 170,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "STORE-NY",
+    "qty": 94,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "STORE-SF",
+    "qty": 88,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "STORE-CHI",
+    "qty": 84,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "STORE-DAL",
+    "qty": 82,
+    "days": 14
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "ONLINE",
+    "qty": 160,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "STORE-NY",
+    "qty": 110,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "STORE-SF",
+    "qty": 102,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "STORE-CHI",
+    "qty": 98,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "STORE-DAL",
+    "qty": 94,
+    "days": 14
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "ONLINE",
+    "qty": 180,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "STORE-NY",
+    "qty": 130,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "STORE-SF",
+    "qty": 120,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "STORE-CHI",
+    "qty": 114,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "STORE-DAL",
+    "qty": 110,
+    "days": 14
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "ONLINE",
+    "qty": 190,
+    "days": 14
+  }
 ]

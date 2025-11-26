@@ -1,6 +1,44 @@
 [
-  { "location_id": "DC-EAST", "kind": "dc", "capacity": 5000, "safety_stock": 100 },
-  { "location_id": "STORE-NY", "kind": "store", "capacity": 800, "safety_stock": 40 },
-  { "location_id": "STORE-SF", "kind": "store", "capacity": 750, "safety_stock": 35 },
-  { "location_id": "ONLINE", "kind": "online", "capacity": 1200, "safety_stock": 60 }
+  {
+    "location_id": "DC-EAST",
+    "kind": "dc",
+    "capacity": 6200,
+    "safety_stock": 170
+  },
+  {
+    "location_id": "DC-WEST",
+    "kind": "dc",
+    "capacity": 5900,
+    "safety_stock": 160
+  },
+  {
+    "location_id": "STORE-NY",
+    "kind": "store",
+    "capacity": 950,
+    "safety_stock": 55
+  },
+  {
+    "location_id": "STORE-SF",
+    "kind": "store",
+    "capacity": 920,
+    "safety_stock": 50
+  },
+  {
+    "location_id": "STORE-CHI",
+    "kind": "store",
+    "capacity": 900,
+    "safety_stock": 50
+  },
+  {
+    "location_id": "STORE-DAL",
+    "kind": "store",
+    "capacity": 880,
+    "safety_stock": 45
+  },
+  {
+    "location_id": "ONLINE",
+    "kind": "online",
+    "capacity": 1600,
+    "safety_stock": 90
+  }
 ]

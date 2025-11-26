@@ -1,9 +1,884 @@
 [
-  { "sku": "SKU-RED-TEA", "location_id": "DC-EAST", "on_hand": 320, "inbound": 50 },
-  { "sku": "SKU-RED-TEA", "location_id": "STORE-NY", "on_hand": 60, "inbound": 0 },
-  { "sku": "SKU-RED-TEA", "location_id": "STORE-SF", "on_hand": 40, "inbound": 0 },
-  { "sku": "SKU-RED-TEA", "location_id": "ONLINE", "on_hand": 70, "inbound": 20 },
-  { "sku": "SKU-MASALA", "location_id": "DC-EAST", "on_hand": 220, "inbound": 0 },
-  { "sku": "SKU-RICE", "location_id": "DC-EAST", "on_hand": 900, "inbound": 150 },
-  { "sku": "SKU-PULSES", "location_id": "DC-EAST", "on_hand": 430, "inbound": 0 }
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "DC-EAST",
+    "on_hand": 340,
+    "inbound": 60
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "DC-WEST",
+    "on_hand": 210,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "STORE-NY",
+    "on_hand": 80,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "STORE-SF",
+    "on_hand": 60,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "STORE-CHI",
+    "on_hand": 65,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "STORE-DAL",
+    "on_hand": 62,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RED-TEA",
+    "location_id": "ONLINE",
+    "on_hand": 90,
+    "inbound": 20
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "DC-EAST",
+    "on_hand": 250,
+    "inbound": 20
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "DC-WEST",
+    "on_hand": 170,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "STORE-NY",
+    "on_hand": 70,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "STORE-SF",
+    "on_hand": 55,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "STORE-CHI",
+    "on_hand": 58,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "STORE-DAL",
+    "on_hand": 54,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-MASALA",
+    "location_id": "ONLINE",
+    "on_hand": 55,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "DC-EAST",
+    "on_hand": 270,
+    "inbound": 30
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "DC-WEST",
+    "on_hand": 180,
+    "inbound": 20
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "STORE-NY",
+    "on_hand": 52,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "STORE-SF",
+    "on_hand": 45,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "STORE-CHI",
+    "on_hand": 42,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "STORE-DAL",
+    "on_hand": 40,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "location_id": "ONLINE",
+    "on_hand": 65,
+    "inbound": 10
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "DC-EAST",
+    "on_hand": 980,
+    "inbound": 180
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "DC-WEST",
+    "on_hand": 740,
+    "inbound": 140
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "STORE-NY",
+    "on_hand": 110,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "STORE-SF",
+    "on_hand": 95,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "STORE-CHI",
+    "on_hand": 100,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "STORE-DAL",
+    "on_hand": 98,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-RICE",
+    "location_id": "ONLINE",
+    "on_hand": 130,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "DC-EAST",
+    "on_hand": 480,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "DC-WEST",
+    "on_hand": 360,
+    "inbound": 70
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "STORE-NY",
+    "on_hand": 84,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "STORE-SF",
+    "on_hand": 72,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "STORE-CHI",
+    "on_hand": 76,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "STORE-DAL",
+    "on_hand": 70,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PULSES",
+    "location_id": "ONLINE",
+    "on_hand": 90,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "DC-EAST",
+    "on_hand": 540,
+    "inbound": 100
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "DC-WEST",
+    "on_hand": 380,
+    "inbound": 80
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "STORE-NY",
+    "on_hand": 78,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "STORE-SF",
+    "on_hand": 70,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "STORE-CHI",
+    "on_hand": 72,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "STORE-DAL",
+    "on_hand": 68,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "location_id": "ONLINE",
+    "on_hand": 92,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "DC-EAST",
+    "on_hand": 200,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "DC-WEST",
+    "on_hand": 150,
+    "inbound": 25
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "STORE-NY",
+    "on_hand": 32,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "STORE-SF",
+    "on_hand": 28,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "STORE-CHI",
+    "on_hand": 30,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "STORE-DAL",
+    "on_hand": 26,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GHEE",
+    "location_id": "ONLINE",
+    "on_hand": 34,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "DC-EAST",
+    "on_hand": 160,
+    "inbound": 30
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "DC-WEST",
+    "on_hand": 120,
+    "inbound": 20
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "STORE-NY",
+    "on_hand": 28,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "STORE-SF",
+    "on_hand": 24,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "STORE-CHI",
+    "on_hand": 24,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "STORE-DAL",
+    "on_hand": 22,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "location_id": "ONLINE",
+    "on_hand": 32,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "DC-EAST",
+    "on_hand": 170,
+    "inbound": 25
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "DC-WEST",
+    "on_hand": 130,
+    "inbound": 20
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "STORE-NY",
+    "on_hand": 30,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "STORE-SF",
+    "on_hand": 28,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "STORE-CHI",
+    "on_hand": 26,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "STORE-DAL",
+    "on_hand": 24,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-HONEY",
+    "location_id": "ONLINE",
+    "on_hand": 36,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "DC-EAST",
+    "on_hand": 190,
+    "inbound": 30
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "DC-WEST",
+    "on_hand": 150,
+    "inbound": 25
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "STORE-NY",
+    "on_hand": 40,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "STORE-SF",
+    "on_hand": 34,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "STORE-CHI",
+    "on_hand": 32,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "STORE-DAL",
+    "on_hand": 30,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "location_id": "ONLINE",
+    "on_hand": 42,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "DC-EAST",
+    "on_hand": 260,
+    "inbound": 60
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "DC-WEST",
+    "on_hand": 210,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "STORE-NY",
+    "on_hand": 56,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "STORE-SF",
+    "on_hand": 48,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "STORE-CHI",
+    "on_hand": 46,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "STORE-DAL",
+    "on_hand": 44,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "location_id": "ONLINE",
+    "on_hand": 60,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "DC-EAST",
+    "on_hand": 320,
+    "inbound": 90
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "DC-WEST",
+    "on_hand": 260,
+    "inbound": 60
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "STORE-NY",
+    "on_hand": 74,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "STORE-SF",
+    "on_hand": 64,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "STORE-CHI",
+    "on_hand": 62,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "STORE-DAL",
+    "on_hand": 60,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "location_id": "ONLINE",
+    "on_hand": 82,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "DC-EAST",
+    "on_hand": 220,
+    "inbound": 50
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "DC-WEST",
+    "on_hand": 180,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "STORE-NY",
+    "on_hand": 50,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "STORE-SF",
+    "on_hand": 44,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "STORE-CHI",
+    "on_hand": 42,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "STORE-DAL",
+    "on_hand": 40,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "location_id": "ONLINE",
+    "on_hand": 58,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "DC-EAST",
+    "on_hand": 240,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "DC-WEST",
+    "on_hand": 190,
+    "inbound": 30
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "STORE-NY",
+    "on_hand": 46,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "STORE-SF",
+    "on_hand": 40,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "STORE-CHI",
+    "on_hand": 38,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "STORE-DAL",
+    "on_hand": 36,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "location_id": "ONLINE",
+    "on_hand": 52,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "DC-EAST",
+    "on_hand": 260,
+    "inbound": 50
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "DC-WEST",
+    "on_hand": 200,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "STORE-NY",
+    "on_hand": 62,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "STORE-SF",
+    "on_hand": 54,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "STORE-CHI",
+    "on_hand": 50,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "STORE-DAL",
+    "on_hand": 48,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "location_id": "ONLINE",
+    "on_hand": 66,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "DC-EAST",
+    "on_hand": 230,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "DC-WEST",
+    "on_hand": 180,
+    "inbound": 30
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "STORE-NY",
+    "on_hand": 56,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "STORE-SF",
+    "on_hand": 48,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "STORE-CHI",
+    "on_hand": 46,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "STORE-DAL",
+    "on_hand": 44,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "location_id": "ONLINE",
+    "on_hand": 64,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "DC-EAST",
+    "on_hand": 210,
+    "inbound": 35
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "DC-WEST",
+    "on_hand": 170,
+    "inbound": 30
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "STORE-NY",
+    "on_hand": 44,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "STORE-SF",
+    "on_hand": 38,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "STORE-CHI",
+    "on_hand": 36,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "STORE-DAL",
+    "on_hand": 34,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "location_id": "ONLINE",
+    "on_hand": 50,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "DC-EAST",
+    "on_hand": 210,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "DC-WEST",
+    "on_hand": 170,
+    "inbound": 30
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "STORE-NY",
+    "on_hand": 44,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "STORE-SF",
+    "on_hand": 38,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "STORE-CHI",
+    "on_hand": 36,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "STORE-DAL",
+    "on_hand": 34,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "location_id": "ONLINE",
+    "on_hand": 50,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "DC-EAST",
+    "on_hand": 190,
+    "inbound": 35
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "DC-WEST",
+    "on_hand": 150,
+    "inbound": 25
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "STORE-NY",
+    "on_hand": 40,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "STORE-SF",
+    "on_hand": 34,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "STORE-CHI",
+    "on_hand": 32,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "STORE-DAL",
+    "on_hand": 30,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "location_id": "ONLINE",
+    "on_hand": 46,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "DC-EAST",
+    "on_hand": 260,
+    "inbound": 50
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "DC-WEST",
+    "on_hand": 210,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "STORE-NY",
+    "on_hand": 48,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "STORE-SF",
+    "on_hand": 42,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "STORE-CHI",
+    "on_hand": 40,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "STORE-DAL",
+    "on_hand": 38,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "location_id": "ONLINE",
+    "on_hand": 58,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "DC-EAST",
+    "on_hand": 230,
+    "inbound": 40
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "DC-WEST",
+    "on_hand": 180,
+    "inbound": 30
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "STORE-NY",
+    "on_hand": 54,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "STORE-SF",
+    "on_hand": 46,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "STORE-CHI",
+    "on_hand": 44,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "STORE-DAL",
+    "on_hand": 42,
+    "inbound": 0
+  },
+  {
+    "sku": "SKU-SOAP",
+    "location_id": "ONLINE",
+    "on_hand": 62,
+    "inbound": 0
+  }
 ]

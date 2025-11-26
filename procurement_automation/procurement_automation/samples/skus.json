@@ -1,6 +1,107 @@
 [
-  { "sku": "SKU-RED-TEA", "supplier_id": "SUP-RED", "case_size": 10 },
-  { "sku": "SKU-MASALA", "supplier_id": "SUP-RED", "case_size": 12 },
-  { "sku": "SKU-RICE", "supplier_id": "SUP-GROC", "case_size": 20 },
-  { "sku": "SKU-PULSES", "supplier_id": "SUP-GROC", "case_size": 24 }
+  {
+    "sku": "SKU-RED-TEA",
+    "supplier_id": "SUP-RED",
+    "case_size": 10
+  },
+  {
+    "sku": "SKU-MASALA",
+    "supplier_id": "SUP-RED",
+    "case_size": 12
+  },
+  {
+    "sku": "SKU-BLACK-TEA",
+    "supplier_id": "SUP-RED",
+    "case_size": 10
+  },
+  {
+    "sku": "SKU-RICE",
+    "supplier_id": "SUP-GROC",
+    "case_size": 20
+  },
+  {
+    "sku": "SKU-PULSES",
+    "supplier_id": "SUP-GROC",
+    "case_size": 24
+  },
+  {
+    "sku": "SKU-FLOUR",
+    "supplier_id": "SUP-GROC",
+    "case_size": 15
+  },
+  {
+    "sku": "SKU-GHEE",
+    "supplier_id": "SUP-GROC",
+    "case_size": 8
+  },
+  {
+    "sku": "SKU-OLIVE-OIL",
+    "supplier_id": "SUP-FRESH",
+    "case_size": 6
+  },
+  {
+    "sku": "SKU-HONEY",
+    "supplier_id": "SUP-FRESH",
+    "case_size": 12
+  },
+  {
+    "sku": "SKU-DRIED-FRUIT",
+    "supplier_id": "SUP-FRESH",
+    "case_size": 10
+  },
+  {
+    "sku": "SKU-ORANGE-JUICE",
+    "supplier_id": "SUP-BEV",
+    "case_size": 12
+  },
+  {
+    "sku": "SKU-SPARKLING",
+    "supplier_id": "SUP-BEV",
+    "case_size": 24
+  },
+  {
+    "sku": "SKU-COLD-BREW",
+    "supplier_id": "SUP-BEV",
+    "case_size": 12
+  },
+  {
+    "sku": "SKU-TRAIL-MIX",
+    "supplier_id": "SUP-SNACK",
+    "case_size": 18
+  },
+  {
+    "sku": "SKU-CHIPS",
+    "supplier_id": "SUP-SNACK",
+    "case_size": 24
+  },
+  {
+    "sku": "SKU-COOKIES",
+    "supplier_id": "SUP-SNACK",
+    "case_size": 20
+  },
+  {
+    "sku": "SKU-GRANOLA",
+    "supplier_id": "SUP-SNACK",
+    "case_size": 16
+  },
+  {
+    "sku": "SKU-DETERGENT",
+    "supplier_id": "SUP-HOUSE",
+    "case_size": 12
+  },
+  {
+    "sku": "SKU-DISH-SOAP",
+    "supplier_id": "SUP-HOUSE",
+    "case_size": 12
+  },
+  {
+    "sku": "SKU-PAPER-TOWEL",
+    "supplier_id": "SUP-HOUSE",
+    "case_size": 6
+  },
+  {
+    "sku": "SKU-SOAP",
+    "supplier_id": "SUP-HOUSE",
+    "case_size": 24
+  }
 ]

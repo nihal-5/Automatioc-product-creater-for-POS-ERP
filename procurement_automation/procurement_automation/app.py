@@ -3,6 +3,7 @@ from __future__ import annotations
 import io
 import json
 from pathlib import Path
+from collections import defaultdict
 from typing import Dict, List, Optional
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import HTMLResponse, JSONResponse, Response
@@ -34,6 +35,16 @@ def plan_to_dict(plan: PlanResult) -> dict:
             for po in plan.purchase_orders
         ],
         "notes": plan.notes,
+    }
+
+
+def _po_to_dict(po: PurchaseOrder) -> dict:
+    return {
+        "supplier_id": po.supplier_id,
+        "status": po.status,
+        "eta_days": po.eta_days,
+        "lines": [vars(line) for line in po.lines],
+        "allocations": [vars(a) for a in po.allocations],
     }
 
 
@@ -106,17 +117,42 @@ def _supplier_summary(supplier_id: str):
             po = p
             break
 
+    alloc_lookup: Dict[tuple[str, str], int] = defaultdict(int)
+    alloc_by_loc: Dict[str, Dict] = {}
+    if po:
+        for alloc in po.allocations:
+            alloc_lookup[(alloc.sku, alloc.location_id)] += alloc.qty
+            loc = locations.get(alloc.location_id)
+            entry = alloc_by_loc.setdefault(
+                alloc.location_id,
+                {
+                    "location_id": alloc.location_id,
+                    "kind": loc.kind if loc else "store",
+                    "total_allocated": 0,
+                    "skus": [],
+                },
+            )
+            entry["total_allocated"] += alloc.qty
+            entry["skus"].append({"sku": alloc.sku, "qty": alloc.qty})
+
     sku_blocks = []
     for sku in skus:
         locs = []
+        planned_total = 0
         for loc_id, loc in locations.items():
             rec = inv_lookup.get((sku.sku, loc_id))
+            planned_in = alloc_lookup.get((sku.sku, loc_id), 0)
+            planned_total += planned_in
             locs.append(
                 {
                     "location_id": loc_id,
                     "kind": loc.kind,
+                    "capacity": loc.capacity,
+                    "safety_stock": loc.safety_stock,
                     "on_hand": rec.on_hand if rec else 0,
                     "inbound": rec.inbound if rec else 0,
+                    "planned_in": planned_in,
+                    "low": (rec.on_hand if rec else 0) < loc.safety_stock,
                 }
             )
         sku_blocks.append(
@@ -124,6 +160,7 @@ def _supplier_summary(supplier_id: str):
                 "sku": sku.sku,
                 "case_size": sku.case_size,
                 "locations": locs,
+                "planned_total": planned_total,
             }
         )
 
@@ -131,11 +168,13 @@ def _supplier_summary(supplier_id: str):
         "supplier": suppliers.get(supplier_id),
         "skus": sku_blocks,
         "purchase_order": po,
+        "allocation_summary": list(alloc_by_loc.values()),
     }
 
 
 def _po_pdf_bytes(supplier: Supplier, po: PurchaseOrder, skus: List[SKU]) -> bytes:
     sku_map = {s.sku: s for s in skus}
+    loc_kind_map = {l.location_id: l.kind for l in current_data["locations"]}
     pdf = FPDF(orientation="P", unit="mm", format="A4")
     pdf.add_page()
     pdf.set_font("Helvetica", "B", 16)
@@ -168,15 +207,28 @@ def _po_pdf_bytes(supplier: Supplier, po: PurchaseOrder, skus: List[SKU]) -> byt
     pdf.cell(40, 8, f"{grand:.2f}", border=1, ln=1)
     pdf.ln(6)
     pdf.set_font("Helvetica", "", 11)
-    pdf.multi_cell(0, 6, "Allocations")
+    pdf.multi_cell(0, 6, "Allocations to DCs/branches")
     pdf.set_font("Helvetica", "", 10)
     pdf.cell(50, 8, "Location", border=1)
-    pdf.cell(60, 8, "SKU", border=1)
+    pdf.cell(30, 8, "Kind", border=1)
+    pdf.cell(50, 8, "SKU", border=1)
     pdf.cell(40, 8, "Qty", border=1, ln=1)
+    alloc_totals: Dict[str, int] = defaultdict(int)
     for alloc in po.allocations:
+        alloc_totals[alloc.location_id] += alloc.qty
         pdf.cell(50, 8, alloc.location_id, border=1)
-        pdf.cell(60, 8, alloc.sku, border=1)
+        pdf.cell(30, 8, loc_kind_map.get(alloc.location_id, ""), border=1)
+        pdf.cell(50, 8, alloc.sku, border=1)
         pdf.cell(40, 8, str(alloc.qty), border=1, ln=1)
+    if alloc_totals:
+        pdf.ln(4)
+        pdf.set_font("Helvetica", "B", 11)
+        pdf.cell(0, 8, "Allocation totals", ln=1)
+        pdf.set_font("Helvetica", "", 10)
+        for loc_id, qty in alloc_totals.items():
+            pdf.cell(80, 8, loc_id, border=1)
+            pdf.cell(40, 8, loc_kind_map.get(loc_id, ""), border=1)
+            pdf.cell(40, 8, str(qty), border=1, ln=1)
     return pdf.output(dest="S").encode("latin1")
 
 
@@ -197,6 +249,8 @@ HTML_PAGE = """
       --border: #1f2937;
       --accent: #f97316;
       --muted: #94a3b8;
+      --ok: #22c55e;
+      --warn: #facc15;
     }
     * { box-sizing: border-box; }
     body {
@@ -224,6 +278,18 @@ HTML_PAGE = """
       padding: 18px;
       box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
     }
+    .status-list { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .status-item {
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: #e2e8f0;
+      font-size: 13px;
+    }
+    .status-item.ok { border-color: rgba(34, 197, 94, 0.4); color: var(--ok); }
+    .status-item.pending { border-color: rgba(250, 204, 21, 0.4); color: var(--warn); }
+    .status-item.info { border-color: rgba(148, 163, 184, 0.5); color: #cbd5e1; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 12px 0 4px; }
     .card {
       background: var(--card);
@@ -260,6 +326,13 @@ HTML_PAGE = """
       overflow: auto;
       max-height: 460px;
     }
+    .supplier-card { background: #0a0f1e; border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin-top: 10px; }
+    .tag { display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(148,163,184,0.12); color: #cbd5e1; margin-right: 6px; font-size: 12px; }
+    .sku-card { border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-top: 8px; background: #0d1426; }
+    .sku-locs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 6px; margin-top: 6px; }
+    .loc-chip { background: rgba(148,163,184,0.08); border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; color: #cbd5e1; font-size: 12px; }
+    .pill { background: rgba(249, 115, 22, 0.18); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); padding: 4px 8px; border-radius: 10px; font-size: 12px; }
+    .warn { color: #fbbf24; }
     .note { color: #fbbf24; margin-top: 6px; font-size: 13px; }
     .footer { color: var(--muted); font-size: 12px; margin-top: 10px; }
   </style>
@@ -269,7 +342,17 @@ HTML_PAGE = """
     <div class="hero">
       <p class="eyebrow">Supplier-ready plan</p>
       <h1>Procurement Automation</h1>
-      <p class="subhead">Upload JSON/CSV files or run with the bundled sample set to generate a deterministic procurement plan with supplier-level POs and allocations.</p>
+      <p class="subhead">Upload JSON/CSV files or run with the bundled multi-supplier sample set to generate a deterministic procurement plan with supplier-level POs, branch allocations, and ready-to-send PDFs.</p>
+    </div>
+
+    <div class="panel" style="margin-top:14px;">
+      <div class="actions">
+        <strong>Workflow</strong>
+        <span class="hint">Transparent log of data load, planning, and supplier selection.</span>
+      </div>
+      <ul id="status-list" class="status-list">
+        <li class="status-item info">Bootstrapping sample data…</li>
+      </ul>
     </div>
 
     <form id="form" enctype="multipart/form-data" class="panel">
@@ -314,9 +397,9 @@ HTML_PAGE = """
           <option value="">Loading suppliers...</option>
         </select>
         <button id="pdf-btn" type="button" onclick="downloadPdf()">Download PO PDF</button>
-        <span class="hint">Auto-refreshes from the latest data/plan.</span>
+        <span class="hint">Auto-refreshes from the latest data/plan and shows branch stock per SKU.</span>
       </div>
-      <div id="supplier-info" class="result" style="margin-top:10px;">Select a supplier to view linked products and stock.</div>
+      <div id="supplier-info" class="supplier-card">Select a supplier to view linked products, branch stock, and PO lines.</div>
     </div>
 
     <div class="note" id="note">Using bundled sample data by default. Uploads are optional.</div>
@@ -326,6 +409,72 @@ HTML_PAGE = """
   </div>
 
   <script>
+    function pushStatus(text, state = 'info') {
+      const list = document.getElementById('status-list');
+      const li = document.createElement('li');
+      li.className = `status-item ${state}`;
+      li.textContent = text;
+      list.appendChild(li);
+    }
+
+    function renderSupplierSummary(summary) {
+      const panel = document.getElementById('supplier-info');
+      if (!summary || summary.error) {
+        panel.textContent = 'Supplier not found.';
+        return;
+      }
+      const supplier = summary.supplier;
+      const po = summary.purchase_order;
+      const skus = summary.skus || [];
+      const allocations = summary.allocation_summary || [];
+
+      const stats = [
+        `<span class="pill">Lead time ${supplier.lead_time_days}d</span>`,
+        `<span class="pill">MOQ ${supplier.min_order_qty}</span>`
+      ];
+      if (po) {
+        stats.push(`<span class="pill">Lines ${po.lines.length}</span>`);
+        stats.push(`<span class="pill">ETA ${po.eta_days}d</span>`);
+      }
+
+      const poLines = po && po.lines.length
+        ? po.lines.map(l => `<div class="loc-chip">${l.sku}: qty ${l.qty} @ ${l.unit_cost}</div>`).join('')
+        : '<span class="hint">No draft PO lines for this supplier.</span>';
+
+      const allocHtml = allocations.length
+        ? allocations.map(a => `<div class="loc-chip">${a.location_id} (${a.kind}) → ${a.total_allocated} units</div>`).join('')
+        : '<span class="hint">No allocations planned for this supplier.</span>';
+
+      const skuCards = skus.map((sku) => {
+        const totalOnHand = sku.locations.reduce((acc, l) => acc + (l.on_hand || 0), 0);
+        const totalInbound = sku.locations.reduce((acc, l) => acc + (l.inbound || 0), 0);
+        const locs = sku.locations.map(l => {
+          const badge = l.low ? '<span class="warn">• low</span>' : '';
+          const planned = l.planned_in && l.planned_in > 0 ? ` | planned in ${l.planned_in}` : '';
+          const cap = l.capacity ? ` | cap ${l.capacity}` : '';
+          return `<div class="loc-chip">${l.location_id} (${l.kind}) — on hand ${l.on_hand}, inbound ${l.inbound}${planned}${cap} ${badge}</div>`;
+        }).join('');
+        return `
+          <div class="sku-card">
+            <div><strong>${sku.sku}</strong> <span class="tag">case ${sku.case_size}</span> <span class="tag">on hand ${totalOnHand} | inbound ${totalInbound}</span> <span class="tag">planned ${sku.planned_total}</span></div>
+            <div class="sku-locs">${locs}</div>
+          </div>
+        `;
+      }).join('');
+
+      panel.innerHTML = `
+        <div class="tag">Supplier</div>
+        <div><strong>${supplier.name}</strong> (${supplier.supplier_id})</div>
+        <div style="margin:6px 0; display:flex; gap:6px; flex-wrap:wrap;">${stats.join('')}</div>
+        <div style="margin:6px 0;"><strong>Allocations (DC/branches)</strong></div>
+        <div class="sku-locs">${allocHtml}</div>
+        <div style="margin:6px 0;"><strong>Draft PO lines</strong></div>
+        <div class="sku-locs">${poLines}</div>
+        <div style="margin-top:10px;"><strong>Linked SKUs & branch stock</strong></div>
+        ${skuCards}
+      `;
+    }
+
     async function loadSuppliers() {
       const sel = document.getElementById('supplier-select');
       sel.innerHTML = '<option value=\"\">Loading suppliers...</option>';
@@ -343,9 +492,11 @@ HTML_PAGE = """
         if (json.suppliers.length > 0) {
           sel.value = json.suppliers[0].supplier_id;
           loadSupplierSummary(sel.value);
+          pushStatus(`Loaded ${json.suppliers.length} suppliers`, 'ok');
         }
       } catch (e) {
         sel.innerHTML = '<option value=\"\">Failed to load suppliers</option>';
+        pushStatus('Failed to load suppliers', 'pending');
       }
     }
 
@@ -360,25 +511,8 @@ HTML_PAGE = """
         const res = await fetch(`/api/supplier/${encodeURIComponent(id)}/summary`);
         if (!res.ok) throw new Error('Failed to load summary');
         const json = await res.json();
-        const lines = [];
-        lines.push(`Supplier: ${json.supplier.name} (${json.supplier.supplier_id})`);
-        lines.push(`Lead time: ${json.supplier.lead_time_days} days | MOQ: ${json.supplier.min_order_qty}`);
-        if (json.purchase_order) {
-          const po = json.purchase_order;
-          lines.push('');
-          lines.push(`Draft PO: ETA ${po.eta_days} days | Lines: ${po.lines.length}`);
-          po.lines.forEach(l => {
-            lines.push(`- ${l.sku}: qty ${l.qty} @ ${l.unit_cost}`);
-          });
-        }
-        lines.push('');
-        json.skus.forEach(sku => {
-          lines.push(`SKU ${sku.sku} (case ${sku.case_size})`);
-          sku.locations.forEach(loc => {
-            lines.push(`  - ${loc.location_id} [${loc.kind}]: on hand ${loc.on_hand}, inbound ${loc.inbound}`);
-          });
-        });
-        panel.textContent = lines.join('\\n');
+        renderSupplierSummary(json);
+        pushStatus(`Viewing ${json.supplier.name}`, 'ok');
       } catch (e) {
         panel.textContent = 'Failed to load supplier details.';
       }
@@ -391,6 +525,7 @@ HTML_PAGE = """
       const result = document.getElementById('result');
       const btn = document.getElementById('run-btn');
       note.textContent = 'Processing...';
+      pushStatus('Planning purchase orders…', 'pending');
       btn.disabled = true;
       try {
         const res = await fetch('/api/run', { method: 'POST', body: data });
@@ -403,9 +538,11 @@ HTML_PAGE = """
           note.textContent = 'Plan generated successfully.';
         }
         loadSuppliers();
+        pushStatus(`Plan ready with ${json.purchase_orders.length} supplier POs`, 'ok');
       } catch (e) {
         note.textContent = 'Failed: ' + e.message;
         result.textContent = 'Submit files or run with defaults to view the plan.';
+        pushStatus('Plan failed', 'pending');
       } finally {
         btn.disabled = false;
       }
@@ -424,6 +561,7 @@ HTML_PAGE = """
     });
 
     window.addEventListener('DOMContentLoaded', () => {
+      pushStatus('Running sample plan…', 'pending');
       runPlan();
     });
   </script>
@@ -506,8 +644,9 @@ async def supplier_summary(supplier_id: str):
             "lead_time_days": sup.lead_time_days,
             "min_order_qty": sup.min_order_qty,
         },
-        "purchase_order": plan_to_dict(PlanResult([po], []))["purchase_orders"][0] if po else None,
+        "purchase_order": _po_to_dict(po) if po else None,
         "skus": summary["skus"],
+        "allocation_summary": summary.get("allocation_summary", []),
     }
 
 

@@ -22,11 +22,12 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn procurement_automation.app:app --reload --port 8010
 ```
-Open http://localhost:8010 — it auto-generates a plan from bundled sample data on load. Upload JSON/CSV files anytime to override.
+Open http://localhost:8010 — it auto-generates a plan from bundled multi-supplier sample data on load. Upload JSON/CSV files anytime to override.
 
 ### Supplier view + PDFs
-- The dashboard lists suppliers from the latest plan (sample or your uploads).
-- Select a supplier to see linked SKUs and branch stock; download a ready-to-send PO PDF for that supplier.
+- The dashboard lists suppliers from the latest plan (sample or your uploads) and shows planning status.
+- Select a supplier to see linked SKUs, branch/DC stock, capacity/safety stock signals, planned allocations, and draft PO lines.
+- Download a ready-to-send PO PDF per supplier; the PDF now includes a branch/DC allocation summary.
 
 ### API endpoints
 - `GET /` — minimal UI for uploads and running the plan.
