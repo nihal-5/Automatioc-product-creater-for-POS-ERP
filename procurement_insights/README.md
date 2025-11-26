@@ -40,6 +40,11 @@ procurement_insights/
     models.py    # Pydantic schemas
     parser.py    # pdfminer extraction + regex/heuristics + anomaly checks
     pipeline.py  # classify -> parse -> validate orchestration
+  docs/
+    diagram.txt  # brief pipeline outline
+  samples/
+    sample_response.json
+    sample_invoice.pdf (add your own or generate)
   requirements.txt
   README.md
 ```

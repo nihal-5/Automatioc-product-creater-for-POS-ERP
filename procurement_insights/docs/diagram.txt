@@ -1,0 +1,9 @@
+Pipeline:
+- Classify: decide if document looks like an invoice (keywords: invoice, tax, total, qty).
+- Parse: extract invoice id/date, tax ID (GST/VAT), line items (qty/unit price/line total), totals, barcodes.
+- Validate: flag anomalies (missing tax ID, total mismatch vs line sums, odd tax rate, missing totals/items) and document-type mismatch.
+
+Endpoints:
+- GET /              -> minimal upload UI (HTMX)
+- POST /api/process  -> classification + structured invoice + anomalies
+- POST /api/validate -> optional LLM sanity check (disabled by default)
