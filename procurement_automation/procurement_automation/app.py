@@ -229,7 +229,10 @@ def _po_pdf_bytes(supplier: Supplier, po: PurchaseOrder, skus: List[SKU]) -> byt
             pdf.cell(80, 8, loc_id, border=1)
             pdf.cell(40, 8, loc_kind_map.get(loc_id, ""), border=1)
             pdf.cell(40, 8, str(qty), border=1, ln=1)
-    return pdf.output(dest="S").encode("latin1")
+    out = pdf.output(dest="S")
+    if isinstance(out, (bytes, bytearray)):
+        return bytes(out)
+    return str(out).encode("latin1")
 
 
 HTML_PAGE = """
@@ -396,6 +399,7 @@ HTML_PAGE = """
         <select id="supplier-select" style="padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:#e2e8f0;">
           <option value="">Loading suppliers...</option>
         </select>
+        <button id="regen-btn" type="button" onclick="runPlan()">Generate PO</button>
         <button id="pdf-btn" type="button" onclick="downloadPdf()">Download PO PDF</button>
         <span class="hint">Auto-refreshes from the latest data/plan and shows branch stock per SKU.</span>
       </div>
